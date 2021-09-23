@@ -1,0 +1,34 @@
+<%= form_with model: @property do |f| %>
+  <div>
+    <%= f.label :title, 'Título do Anúncio:' %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :description, 'Descrição do Anúncio' %>
+    <%= f.text_field :description %>
+  </div>
+  <div>
+    <%= f.label :rooms, 'Quartos' %>
+    <%= f.number_field :rooms %>
+  </div>
+  <div>
+    <%= f.label :bathrooms, 'Banheiros' %>
+    <%= f.number_field :bathrooms %>
+  </div>
+  <div>
+    <%= f.label :daily_rate, 'Diária' %>
+    <%= f.number_field :daily_rate %>
+  </div>
+  <div>
+    <%= f.check_box :pets %>
+    <%= f.label :pets, 'Aceita Pets' %>
+  </div>
+  <div>
+    <%= f.check_box :parking_slot %>
+    <%= f.label :parking_slot, 'Vaga de Estacionamento' %>
+  </div>
+  <%= f.submit 'Cadastrar' %>
+<% end %>
+<div>
+  <%= link_to 'Voltar', root_path %>
+</div>

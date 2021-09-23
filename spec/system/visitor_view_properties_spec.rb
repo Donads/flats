@@ -17,10 +17,10 @@ describe 'Visitor visits homepage' do
 
     # Assert
     # 2 imoveis -> casa com quintal em copacabana; cobertura em manaus
-    expect(page).to have_text('Casa com quintal em Copacabana')
-    expect(page).to have_text('Excelente casa, recém reformada com 2 vagas de garagem')
-    expect(page).to have_text('Cobertura em Manaus')
-    expect(page).to have_text('Cobertura de 300m2, churrasqueira e sauna privativa')
+    expect(page).to have_content('Casa com quintal em Copacabana')
+    expect(page).to have_content('Excelente casa, recém reformada com 2 vagas de garagem')
+    expect(page).to have_content('Cobertura em Manaus')
+    expect(page).to have_content('Cobertura de 300m2, churrasqueira e sauna privativa')
   end
 
   it 'and there is no property available' do
@@ -30,7 +30,7 @@ describe 'Visitor visits homepage' do
     visit root_path
 
     # Assert
-    expect(page).to have_text('Nenhum imóvel disponível')
+    expect(page).to have_content('Nenhum imóvel disponível')
   end
 
   it 'and view property details' do
@@ -47,14 +47,14 @@ describe 'Visitor visits homepage' do
     click_on 'Casa com quintal em Copacabana'
 
     # Assert
-    expect(page).to_not have_text('Cobertura em Manaus')
-    expect(page).to have_text('Casa com quintal em Copacabana')
-    expect(page).to have_text('Excelente casa, recém reformada com 2 vagas de garagem')
-    expect(page).to have_text('Quartos: 3')
-    expect(page).to have_text('Banheiros: 2')
-    expect(page).to have_text('Aceita Pets: Sim')
-    expect(page).to have_text('Estacionamento: Sim')
-    expect(page).to have_text('Diária: R$ 500,00')
+    expect(page).to_not have_content('Cobertura em Manaus')
+    expect(page).to have_content('Casa com quintal em Copacabana')
+    expect(page).to have_content('Excelente casa, recém reformada com 2 vagas de garagem')
+    expect(page).to have_content('Quartos: 3')
+    expect(page).to have_content('Banheiros: 2')
+    expect(page).to have_content('Aceita Pets: Sim')
+    expect(page).to have_content('Estacionamento: Sim')
+    expect(page).to have_content('Diária: R$ 500,00')
   end
 
   it 'and view property details and return to home page' do
@@ -73,7 +73,7 @@ describe 'Visitor visits homepage' do
 
     # Assert
     expect(current_path).to eq root_path
-    expect(page).to have_text('Casa com quintal em Copacabana')
-    expect(page).to have_text('Cobertura em Manaus')
+    expect(page).to have_content('Casa com quintal em Copacabana')
+    expect(page).to have_content('Cobertura em Manaus')
   end
 end
