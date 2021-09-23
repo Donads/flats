@@ -1,0 +1,17 @@
+<div>
+  <p><%= flash[:notice] %><p>
+</div>
+
+<div>
+  <%= form_with model: @property_type do |f| %>
+    <p>
+      <%= f.label :name, 'Nome' %>
+      <%= f.text_field :name %>
+    </p>
+    <p><%= f.submit 'Cadastrar' %></p>
+  <% end %>
+</div>
+
+<div>
+  <p><%= link_to 'Voltar', property_types_path %></p>
+</div>

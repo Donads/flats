@@ -1,0 +1,23 @@
+<div>
+  <p><%= link_to 'Cadastrar', new_property_location_path %></p>
+</div>
+
+<% if @property_locations.empty? %>
+  <div>
+    <p>Nenhuma região cadastrada</p>
+  </div>
+<% end %>
+
+<div>
+  <p>
+    <% @property_locations.each do |prop| %>
+      <p>
+        <%= prop.name %>
+      </p>
+    <% end %>
+  </p>
+</div>
+
+<div>
+  <p><%= link_to 'Voltar', root_path %></p>
+</div>
