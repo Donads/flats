@@ -2,16 +2,18 @@ require 'rails_helper'
 describe 'Visitor register property location' do
   it 'successfully' do
     # Arrange
+    name = 'Nome para teste de cadastro'
 
     # Act
     visit root_path
     click_link 'Regiões de Imóveis'
     click_link 'Cadastrar'
-    fill_in 'Nome', with: 'Sudeste'
+    fill_in 'Nome', with: name
     click_button 'Cadastrar'
 
     # Assert
-    expect(page).to have_content('Sudeste')
+    expect(current_path).to eq property_location_path(PropertyLocation.last)
+    expect(page).to have_content(name)
   end
 
   it 'with an empty name and fails' do
@@ -25,6 +27,7 @@ describe 'Visitor register property location' do
     click_button 'Cadastrar'
 
     # Assert
+    expect(current_path).to eq new_property_location_path
     expect(page).to have_content('É obrigatório o preenchimento do nome')
   end
 
@@ -41,6 +44,7 @@ describe 'Visitor register property location' do
     click_button 'Cadastrar'
 
     # Assert
+    expect(current_path).to eq new_property_location_path
     expect(page).to have_content('Já existe região cadastrada com esse nome')
   end
 end

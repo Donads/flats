@@ -20,6 +20,14 @@
     <%= f.number_field :daily_rate %>
   </div>
   <div>
+    <%= f.label :property_type_id, 'Tipo de Imóvel' %>
+    <%= f.collection_select :property_type_id, PropertyType.order(:name), :id, :name %>
+  </div>
+  <div>
+    <%= f.label :property_location_id, 'Região do Imóvel' %>
+    <%= f.collection_select :property_location_id, PropertyLocation.order(:name), :id, :name %>
+  </div>
+  <div>
     <%= f.check_box :pets %>
     <%= f.label :pets, 'Aceita Pets' %>
   </div>
@@ -32,3 +40,4 @@
 <div>
   <%= link_to 'Voltar', root_path %>
 </div>
+<%#= @property_types %>

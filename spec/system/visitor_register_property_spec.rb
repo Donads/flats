@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Visitor register property' do
   it 'successfully' do
     # Arrange
+    Rails.application.load_seed
 
     # Act
     visit root_path
@@ -12,6 +13,8 @@ describe 'Visitor register property' do
     fill_in 'Quartos', with: '3'
     fill_in 'Banheiros', with: '2'
     fill_in 'Diária', with: 200
+    select 'Casa', from: 'Tipo de Imóvel'
+    select 'Sudeste', from: 'Região do Imóvel'
     check 'Aceita Pets'
     check 'Vaga de Estacionamento'
     click_on 'Cadastrar'

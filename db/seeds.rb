@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+property_types = %w[Apartamento Casa]
+
+property_types.each do |type|
+  PropertyType.create(name: type)
+end
+
+property_locations = %w[Centro-Oeste Nordeste Norte Sudeste Sul]
+
+property_locations.each do |location|
+  PropertyLocation.create(name: location)
+end
