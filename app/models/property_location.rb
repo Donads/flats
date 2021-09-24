@@ -1,4 +1,6 @@
 class PropertyLocation < ApplicationRecord
-  validates :name, presence: { message: 'É obrigatório o preenchimento do nome' }
-  validates :name, uniqueness: { message: 'Já existe região cadastrada com esse nome' }
+  has_many :properties
+
+  validates :name, presence: true
+  validates :name, uniqueness: true
 end

@@ -1,6 +1,12 @@
-<div>
-  <p><%= flash[:notice] %><p>
-</div>
+<h1>Cadastro de Tipos de Imóveis</h1>
+
+<% if @property_type.errors.any? %>
+  <ul>
+    <% @property_type.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <div>
   <%= form_with model: @property_type do |f| %>

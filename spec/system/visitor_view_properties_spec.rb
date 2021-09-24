@@ -5,13 +5,15 @@ require 'rails_helper'
 describe 'Visitor visits homepage' do
   it 'and views properties' do
     # Arrange
-    Rails.application.load_seed
+    property_type = PropertyType.create(name: 'Casa')
+    property_location = PropertyLocation.create(name: 'Sudeste')
+
     Property.create({ title: 'Casa com quintal em Copacabana',
                       description: 'Excelente casa, recém reformada com 2 vagas de garagem',
-                      rooms: 3, parking_slot: true, property_type_id: 1, property_location_id: 1 })
+                      rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, property_type: property_type, property_location: property_location })
     Property.create({ title: 'Cobertura em Manaus',
                       description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
-                      rooms: 5, parking_slot: false, property_type_id: 1, property_location_id: 1 })
+                      rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500, property_type: property_type, property_location: property_location })
 
     # Act
     visit root_path
@@ -36,13 +38,15 @@ describe 'Visitor visits homepage' do
 
   it 'and view property details' do
     # Arrange
-    Rails.application.load_seed
+    property_type = PropertyType.create(name: 'Casa')
+    property_location = PropertyLocation.create(name: 'Sudeste')
+
     Property.create({ title: 'Casa com quintal em Copacabana',
                       description: 'Excelente casa, recém reformada com 2 vagas de garagem',
-                      rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, property_type_id: 1, property_location_id: 1 })
+                      rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, property_type: property_type, property_location: property_location })
     Property.create({ title: 'Cobertura em Manaus',
                       description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
-                      rooms: 5, parking_slot: false, property_type_id: 1, property_location_id: 1 })
+                      rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500, property_type: property_type, property_location: property_location })
 
     # Act
     visit root_path
@@ -61,13 +65,15 @@ describe 'Visitor visits homepage' do
 
   it 'and view property details and return to home page' do
     # Arrange
-    Rails.application.load_seed
+    property_type = PropertyType.create(name: 'Casa')
+    property_location = PropertyLocation.create(name: 'Sudeste')
+
     Property.create({ title: 'Casa com quintal em Copacabana',
                       description: 'Excelente casa, recém reformada com 2 vagas de garagem',
-                      rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, property_type_id: 1, property_location_id: 1 })
+                      rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, property_type: property_type, property_location: property_location })
     Property.create({ title: 'Cobertura em Manaus',
                       description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
-                      rooms: 5, parking_slot: false, property_type_id: 1, property_location_id: 1 })
+                      rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500, property_type: property_type, property_location: property_location })
 
     # Act
     visit root_path

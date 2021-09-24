@@ -13,8 +13,7 @@ class PropertyTypesController < ApplicationController
     if @property_type.save
       redirect_to @property_type
     else
-      flash[:notice] = @property_type.errors.messages.values.first
-      redirect_to new_property_type_path
+      render :new
     end
   end
 

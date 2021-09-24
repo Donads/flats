@@ -27,8 +27,8 @@ describe 'Visitor register property location' do
     click_button 'Cadastrar'
 
     # Assert
-    expect(current_path).to eq new_property_location_path
-    expect(page).to have_content('É obrigatório o preenchimento do nome')
+    expect(current_path).to eq property_locations_path
+    expect(page).to have_content('Nome não pode ficar em branco')
   end
 
   it 'with a duplicated name and fails' do
@@ -44,7 +44,7 @@ describe 'Visitor register property location' do
     click_button 'Cadastrar'
 
     # Assert
-    expect(current_path).to eq new_property_location_path
-    expect(page).to have_content('Já existe região cadastrada com esse nome')
+    expect(current_path).to eq property_locations_path
+    expect(page).to have_content('Nome já existe')
   end
 end

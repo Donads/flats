@@ -13,8 +13,7 @@ class PropertyLocationsController < ApplicationController
     if @property_location.save
       redirect_to @property_location
     else
-      flash[:notice] = @property_location.errors.messages.values.first
-      redirect_to new_property_location_path
+      render :new
     end
   end
 

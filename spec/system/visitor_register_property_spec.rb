@@ -3,7 +3,8 @@ require 'rails_helper'
 describe 'Visitor register property' do
   it 'successfully' do
     # Arrange
-    Rails.application.load_seed
+    PropertyType.create(name: 'Casa')
+    PropertyLocation.create(name: 'Sudeste')
 
     # Act
     visit root_path
@@ -27,5 +28,31 @@ describe 'Visitor register property' do
     expect(page).to have_content('Aceita Pets: Sim')
     expect(page).to have_content('Estacionamento: Sim')
     expect(page).to have_content('Diária: R$ 200,00')
+    # expect(page).to have_content('Sudeste')
+  end
+
+  it 'and must fill all fields' do
+    # Arrange
+    PropertyType.create(name: 'Casa')
+    PropertyLocation.create(name: 'Sudeste')
+
+    # Act
+    visit root_path
+    click_link 'Cadastrar Imóvel'
+    # fill_in 'Título', with: ''
+    # fill_in 'Descrição', with: ''
+    # fill_in 'Quartos', with: ''
+    # fill_in 'Banheiros', with: ''
+    # fill_in 'Diária', with: 0
+    select 'Casa', from: 'Tipo de Imóvel'
+    select 'Sudeste', from: 'Região do Imóvel'
+    click_button 'Cadastrar'
+
+    # Assert
+    expect(page).to have_content('Título não pode ficar em branco')
+    expect(page).to have_content('Descrição não pode ficar em branco')
+    expect(page).to have_content('Quartos não pode ficar em branco')
+    expect(page).to have_content('Banheiros não pode ficar em branco')
+    expect(page).to have_content('Diária não pode ficar em branco')
   end
 end

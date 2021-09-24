@@ -28,8 +28,8 @@ describe 'Visitor register property type' do
     click_button 'Cadastrar'
 
     # Assert
-    expect(current_path).to eq new_property_type_path
-    expect(page).to have_content('É obrigatório o preenchimento do nome')
+    expect(current_path).to eq property_types_path
+    expect(page).to have_content("#{PropertyType.human_attribute_name('name')} #{I18n.t('errors.messages.blank')}")
   end
 
   it 'with a duplicated name and fails' do
@@ -45,7 +45,7 @@ describe 'Visitor register property type' do
     click_button 'Cadastrar'
 
     # Assert
-    expect(current_path).to eq new_property_type_path
-    expect(page).to have_content('Já existe tipo cadastrado com esse nome')
+    expect(current_path).to eq property_types_path
+    expect(page).to have_content("#{PropertyType.human_attribute_name('name')} #{I18n.t('errors.messages.taken')}")
   end
 end
