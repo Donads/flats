@@ -56,3 +56,5 @@ br:
     messages:
       blank: não pode ficar em branco
       taken: já existe
+      not_a_number: deve ser um valor numérico
+      not_an_integer: deve ser um número inteiro

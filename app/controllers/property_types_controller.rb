@@ -18,6 +18,11 @@ class PropertyTypesController < ApplicationController
   end
 
   def show
+    id = params[:id]
+    @property_type = PropertyType.find(id)
+  end
+
+  def edit
     @property_type = PropertyType.find(params[:id])
   end
 end

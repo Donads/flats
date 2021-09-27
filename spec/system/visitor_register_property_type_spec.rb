@@ -35,7 +35,7 @@ describe 'Visitor register property type' do
   it 'with a duplicated name and fails' do
     # Arrange
     name = 'Nome de tipo que será repetido'
-    PropertyType.create(name: name)
+    PropertyType.create!(name: name)
 
     # Act
     visit root_path

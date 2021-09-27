@@ -28,13 +28,13 @@ describe 'Visitor register property location' do
 
     # Assert
     expect(current_path).to eq property_locations_path
-    expect(page).to have_content('Nome não pode ficar em branco')
+    expect(page).to have_content("#{PropertyLocation.human_attribute_name('name')} #{I18n.t('errors.messages.blank')}")
   end
 
   it 'with a duplicated name and fails' do
     # Arrange
     name = 'Nome de região que será repetida'
-    PropertyLocation.create(name: name)
+    PropertyLocation.create!(name: name)
 
     # Act
     visit root_path
@@ -45,6 +45,6 @@ describe 'Visitor register property location' do
 
     # Assert
     expect(current_path).to eq property_locations_path
-    expect(page).to have_content('Nome já existe')
+    expect(page).to have_content("#{PropertyLocation.human_attribute_name('name')} #{I18n.t('errors.messages.taken')}")
   end
 end

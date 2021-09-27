@@ -5,15 +5,15 @@ require 'rails_helper'
 describe 'Visitor visits homepage' do
   it 'and views properties' do
     # Arrange
-    property_type = PropertyType.create(name: 'Casa')
-    property_location = PropertyLocation.create(name: 'Sudeste')
+    property_type = PropertyType.create!(name: 'Casa')
+    property_location = PropertyLocation.create!(name: 'Sudeste')
 
-    Property.create({ title: 'Casa com quintal em Copacabana',
-                      description: 'Excelente casa, recém reformada com 2 vagas de garagem',
-                      rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, property_type: property_type, property_location: property_location })
-    Property.create({ title: 'Cobertura em Manaus',
-                      description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
-                      rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500, property_type: property_type, property_location: property_location })
+    Property.create!({ title: 'Casa com quintal em Copacabana',
+                       description: 'Excelente casa, recém reformada com 2 vagas de garagem',
+                       rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, property_type: property_type, property_location: property_location })
+    Property.create!({ title: 'Cobertura em Manaus',
+                       description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
+                       rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500, property_type: property_type, property_location: property_location })
 
     # Act
     visit root_path
@@ -38,19 +38,19 @@ describe 'Visitor visits homepage' do
 
   it 'and view property details' do
     # Arrange
-    property_type = PropertyType.create(name: 'Casa')
-    property_location = PropertyLocation.create(name: 'Sudeste')
+    property_type = PropertyType.create!(name: 'Casa')
+    property_location = PropertyLocation.create!(name: 'Sudeste')
 
-    Property.create({ title: 'Casa com quintal em Copacabana',
-                      description: 'Excelente casa, recém reformada com 2 vagas de garagem',
-                      rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, property_type: property_type, property_location: property_location })
-    Property.create({ title: 'Cobertura em Manaus',
-                      description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
-                      rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500, property_type: property_type, property_location: property_location })
+    Property.create!({ title: 'Casa com quintal em Copacabana',
+                       description: 'Excelente casa, recém reformada com 2 vagas de garagem',
+                       rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, property_type: property_type, property_location: property_location })
+    Property.create!({ title: 'Cobertura em Manaus',
+                       description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
+                       rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500, property_type: property_type, property_location: property_location })
 
     # Act
     visit root_path
-    click_on 'Casa com quintal em Copacabana'
+    click_link 'Casa com quintal em Copacabana'
 
     # Assert
     expect(page).to_not have_content('Cobertura em Manaus')
@@ -61,24 +61,26 @@ describe 'Visitor visits homepage' do
     expect(page).to have_content('Aceita Pets: Sim')
     expect(page).to have_content('Estacionamento: Sim')
     expect(page).to have_content('Diária: R$ 500,00')
+    expect(page).to have_content('Casa')
+    expect(page).to have_content('Sudeste')
   end
 
   it 'and view property details and return to home page' do
     # Arrange
-    property_type = PropertyType.create(name: 'Casa')
-    property_location = PropertyLocation.create(name: 'Sudeste')
+    property_type = PropertyType.create!(name: 'Casa')
+    property_location = PropertyLocation.create!(name: 'Sudeste')
 
-    Property.create({ title: 'Casa com quintal em Copacabana',
-                      description: 'Excelente casa, recém reformada com 2 vagas de garagem',
-                      rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, property_type: property_type, property_location: property_location })
-    Property.create({ title: 'Cobertura em Manaus',
-                      description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
-                      rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500, property_type: property_type, property_location: property_location })
+    Property.create!({ title: 'Casa com quintal em Copacabana',
+                       description: 'Excelente casa, recém reformada com 2 vagas de garagem',
+                       rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, property_type: property_type, property_location: property_location })
+    Property.create!({ title: 'Cobertura em Manaus',
+                       description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
+                       rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500, property_type: property_type, property_location: property_location })
 
     # Act
     visit root_path
-    click_on 'Casa com quintal em Copacabana'
-    click_on 'Voltar'
+    click_link 'Casa com quintal em Copacabana'
+    click_link 'Voltar'
 
     # Assert
     expect(current_path).to eq root_path

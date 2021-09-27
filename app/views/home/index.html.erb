@@ -1,22 +1,36 @@
-<h1>Flats</h1>
-<h3>Boas vindas ao sistema de locação de apartamentos</h3>
-<nav>
-  <div>
-    <p><%= link_to 'Tipos de Imóveis', property_types_path %></p>
-    <p><%= link_to 'Regiões de Imóveis', property_locations_path %></p>
-    <p><%= link_to 'Cadastrar Imóvel', new_property_path %></p>
-  </div>
-</nav>
+<header>
+  <h1>Flats</h1>
+  <h3>Boas vindas ao sistema de locação de apartamentos</h3>
+  <nav>
+    <div>
+      <p><%= link_to 'Tipos de Imóveis', property_types_path %></p>
+      <p><%= link_to 'Regiões de Imóveis', property_locations_path %></p>
+      <p><%= link_to 'Cadastrar Imóvel', new_property_path %></p>
+    </div>
+  </nav>
+</header>
 
-<% if @properties.empty? %>
-  <div><span>Nenhum imóvel disponível</span></div>
-<% end %>
+<aside>
+  <h2>Filtrar por tipo:</h2>
+  <nav>
+    <div>
+      <% @property_types.each do |pt| %>
+        <%= link_to pt.name, property_type_path(pt) %>
+      <% end %>
+    </div>
+  </nav>
+</aside>
 
-<% @properties.each do |property| %>
-  <dl>
-    <dt><%= link_to property.title, property_path(property) %></dt>
-    <dd><%= property.description %></dd>
-    <dd>Quartos: <%= property.rooms %></dd>
-  </dl>
-<% end %>
+<section>
+  <% if @properties.empty? %>
+    <div><span>Nenhum imóvel disponível</span></div>
+  <% end %>
 
+  <% @properties.each do |property| %>
+    <dl>
+      <dt><%= link_to property.title, property_path(property) %></dt>
+      <dd><%= property.description %></dd>
+      <dd>Quartos: <%= property.rooms %></dd>
+    </dl>
+  <% end %>
+</section>

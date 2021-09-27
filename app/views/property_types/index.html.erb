@@ -12,7 +12,8 @@
   <p>
     <% @property_types.each do |prop| %>
       <p>
-        <%= prop.name %>
+        <%= link_to prop.name, property_type_path(prop) %>
+        <%= link_to 'Editar', edit_property_type_path(prop) %>
       </p>
     <% end %>
   </p>

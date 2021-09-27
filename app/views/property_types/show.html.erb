@@ -1,7 +1,14 @@
 <div>
-  <p><%= @property_type.name %></p>
+  <p><h1>Imóveis do tipo <%= @property_type.name %></h1></p>
 </div>
 
 <div>
   <p><%= link_to 'Voltar', property_types_path %></p>
+</div>
+
+<h2>Imóveis disponíveis:</h2>
+<div>
+  <% @property_type.properties.each do |prop| %>
+    <p><%= link_to prop.title, property_path(prop) %></p>
+  <% end %>
 </div>
