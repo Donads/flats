@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-property_types = %w[Apartamento Casa]
+property_types = %w[Apartamento Casa Sitio]
 
 property_types.each do |type|
   PropertyType.create(name: type)

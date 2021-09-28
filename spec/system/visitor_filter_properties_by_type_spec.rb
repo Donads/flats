@@ -2,12 +2,12 @@ require 'rails_helper'
 
 describe 'Visitor filter properties by type' do
   it 'should view links on nav bar' do
-    # Act
+    # Arrange
     PropertyType.create!(name: 'Apartamento')
     PropertyType.create!(name: 'Casa')
     PropertyType.create!(name: 'Sitio')
 
-    # Arrange
+    # Act
     visit root_path
 
     # Assert
@@ -17,7 +17,7 @@ describe 'Visitor filter properties by type' do
   end
 
   it 'on the type page successfully' do
-    # Act
+    # Arrange
     apartamento = PropertyType.create!(name: 'Apartamento')
     casa = PropertyType.create!(name: 'Casa')
     property_location = PropertyLocation.create!(name: 'Sudeste')
@@ -31,7 +31,7 @@ describe 'Visitor filter properties by type' do
                                     rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500,
                                     property_type: casa, property_location: property_location })
 
-    # Arrange
+    # Act
     visit root_path
     click_link 'Tipos de Imóveis'
     click_on 'Casa'
@@ -44,7 +44,7 @@ describe 'Visitor filter properties by type' do
   end
 
   it 'on the homepage successfully' do
-    # Act
+    # Arrange
     apartamento = PropertyType.create!(name: 'Apartamento')
     casa = PropertyType.create!(name: 'Casa')
     property_location = PropertyLocation.create!(name: 'Sudeste')
@@ -58,7 +58,7 @@ describe 'Visitor filter properties by type' do
                        rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500,
                        property_type: casa, property_location: property_location })
 
-    # Arrange
+    # Act
     visit root_path
     click_link 'Casa'
 

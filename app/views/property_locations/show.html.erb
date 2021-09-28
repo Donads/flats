@@ -1,7 +1,14 @@
 <div>
-  <p><%= @property_location.name %></p>
+  <p><h1>Imóveis da região <%= @property_location.name %></h1></p>
 </div>
 
 <div>
   <p><%= link_to 'Voltar', property_locations_path %></p>
+</div>
+
+<h2>Imóveis disponíveis:</h2>
+<div>
+  <% @property_location.properties.each do |prop| %>
+    <p><%= link_to prop.title, property_path(prop) %></p>
+  <% end %>
 </div>
