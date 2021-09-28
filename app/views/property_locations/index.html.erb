@@ -12,7 +12,8 @@
   <p>
     <% @property_locations.each do |prop| %>
       <p>
-        <%= prop.name %>
+        <%= link_to prop.name, property_location_path(prop) %>
+        <%= link_to 'Editar', edit_property_location_path(prop) %>
       </p>
     <% end %>
   </p>

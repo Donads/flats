@@ -14,14 +14,28 @@
   <h2>Filtrar por tipo:</h2>
   <nav>
     <div>
-      <% @property_types.each do |pt| %>
-        <%= link_to pt.name, property_type_path(pt) %>
-      <% end %>
+      <ul>
+        <% @property_types.each do |pt| %>
+          <li><%= link_to pt.name, root_path(type: pt.name) %></li>
+        <% end %>
+      </ul>
     </div>
   </nav>
+  <h2>Filtrar por região:</h2>
+  <nav>
+    <div>
+      <ul>
+        <% @property_locations.each do |pl| %>
+          <li><%= link_to pl.name, root_path(location: pl.name) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+  <p><%= link_to 'Limpar Filtros', root_path %></p>
 </aside>
 
 <section>
+  <h2>Lista de Imóveis:</h2>
   <% if @properties.empty? %>
     <div><span>Nenhum imóvel disponível</span></div>
   <% end %>

@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :properties, only: %i[create new show]
   resources :property_types, only: %i[create edit index new show update]
-  resources :property_locations, only: %i[create index new show]
+  resources :property_locations, only: %i[create edit index new show update]
 end

@@ -16,7 +16,34 @@ describe 'Visitor filter properties by type' do
     expect(page).to have_link('Sitio')
   end
 
-  it 'successfully' do
+  it 'on the type page successfully' do
+    # Act
+    apartamento = PropertyType.create!(name: 'Apartamento')
+    casa = PropertyType.create!(name: 'Casa')
+    property_location = PropertyLocation.create!(name: 'Sudeste')
+
+    property_1 = Property.create!({ title: 'Cobertura em Manaus',
+                                    description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
+                                    rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500,
+                                    property_type: apartamento, property_location: property_location })
+    property_2 = Property.create!({ title: 'Casa com quintal em Copacabana',
+                                    description: 'Excelente casa, recém reformada com 2 vagas de garagem',
+                                    rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500,
+                                    property_type: casa, property_location: property_location })
+
+    # Arrange
+    visit root_path
+    click_link 'Tipos de Imóveis'
+    click_on 'Casa'
+
+    # Assert
+    expect(current_path).to eq property_type_path(property_2)
+    expect(page).to have_css('h1', text: 'Imóveis do tipo Casa')
+    expect(page).not_to have_content('Cobertura em Manaus')
+    expect(page).to have_link('Casa com quintal em Copacabana')
+  end
+
+  it 'on the homepage successfully' do
     # Act
     apartamento = PropertyType.create!(name: 'Apartamento')
     casa = PropertyType.create!(name: 'Casa')
@@ -24,17 +51,19 @@ describe 'Visitor filter properties by type' do
 
     Property.create!({ title: 'Cobertura em Manaus',
                        description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
-                       rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500, property_type: apartamento, property_location: property_location })
+                       rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500,
+                       property_type: apartamento, property_location: property_location })
     Property.create!({ title: 'Casa com quintal em Copacabana',
                        description: 'Excelente casa, recém reformada com 2 vagas de garagem',
-                       rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, property_type: casa, property_location: property_location })
+                       rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500,
+                       property_type: casa, property_location: property_location })
 
     # Arrange
     visit root_path
-    click_on 'Casa'
+    click_link 'Casa'
 
     # Assert
-    expect(page).to have_css('h1', text: 'Imóveis do tipo Casa')
+    expect(current_path).to eq root_path
     expect(page).not_to have_content('Cobertura em Manaus')
     expect(page).to have_link('Casa com quintal em Copacabana')
   end
