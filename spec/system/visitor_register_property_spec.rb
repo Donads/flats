@@ -18,7 +18,7 @@ describe 'Visitor register property' do
     select 'Sudeste', from: 'Região do Imóvel'
     check 'Aceita Pets'
     check 'Vaga de Estacionamento'
-    click_button 'Cadastrar Imóvel'
+    click_button 'Criar Imóvel'
 
     # Assert
     expect(page).to have_content('Casa em Florianópolis')
@@ -47,7 +47,7 @@ describe 'Visitor register property' do
     # fill_in 'Diária', with: 0
     select 'Casa', from: 'Tipo de Imóvel'
     select 'Sudeste', from: 'Região do Imóvel'
-    click_button 'Cadastrar Imóvel'
+    click_button 'Criar Imóvel'
 
     # Assert
     expect(page).to have_content('Título não pode ficar em branco')
@@ -72,11 +72,11 @@ describe 'Visitor register property' do
     fill_in 'Diária', with: 'a'
     select 'Casa', from: 'Tipo de Imóvel'
     select 'Sudeste', from: 'Região do Imóvel'
-    click_button 'Cadastrar Imóvel'
+    click_button 'Criar Imóvel'
 
     # Assert
-    expect(page).to have_content('Quartos deve ser um valor numérico')
-    expect(page).to have_content('Banheiros deve ser um número inteiro')
-    expect(page).to have_content('Diária deve ser um valor numérico')
+    expect(page).to have_content('Quartos não é um número')
+    expect(page).to have_content('Banheiros não é um número inteiro')
+    expect(page).to have_content('Diária não é um número')
   end
 end

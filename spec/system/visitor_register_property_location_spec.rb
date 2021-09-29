@@ -10,7 +10,7 @@ describe 'Visitor register property location' do
     click_link 'Regiões de Imóveis'
     click_link 'Cadastrar'
     fill_in 'Nome', with: name
-    click_button 'Cadastrar Região do Imóvel'
+    click_button 'Criar Região do Imóvel'
 
     # Assert
     expect(current_path).to eq property_location_path(PropertyLocation.last)
@@ -25,7 +25,7 @@ describe 'Visitor register property location' do
     click_link 'Regiões de Imóveis'
     click_link 'Cadastrar'
     fill_in 'Nome', with: ''
-    click_button 'Cadastrar Região do Imóvel'
+    click_button 'Criar Região do Imóvel'
 
     # Assert
     expect(current_path).to eq property_locations_path
@@ -42,7 +42,7 @@ describe 'Visitor register property location' do
     click_link 'Regiões de Imóveis'
     click_link 'Cadastrar'
     fill_in 'Nome', with: name
-    click_button 'Cadastrar Região do Imóvel'
+    click_button 'Criar Região do Imóvel'
 
     # Assert
     expect(current_path).to eq property_locations_path
