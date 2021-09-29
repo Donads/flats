@@ -58,3 +58,13 @@ br:
       taken: já existe
       not_a_number: deve ser um valor numérico
       not_an_integer: deve ser um número inteiro
+  links:
+    destroy: Destruir
+    edit: Editar
+    go_back: Voltar
+    homepage: Página Inicial
+    show: Exibir
+  helpers:
+    submit:
+      create: 'Cadastrar %{model}'
+      update: 'Atualizar %{model}'

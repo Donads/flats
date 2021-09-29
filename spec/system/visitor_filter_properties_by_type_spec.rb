@@ -34,7 +34,7 @@ describe 'Visitor filter properties by type' do
     # Act
     visit root_path
     click_link 'Tipos de Imóveis'
-    click_on 'Casa'
+    click_link 'Casa'
 
     # Assert
     expect(current_path).to eq property_type_path(property_2)

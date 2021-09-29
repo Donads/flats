@@ -10,7 +10,7 @@ describe 'Visitor register property type' do
     click_link 'Tipos de Imóveis'
     click_link 'Cadastrar'
     fill_in 'Nome', with: name
-    click_button 'Cadastrar'
+    click_button 'Cadastrar Tipo de Imóvel'
 
     # Assert
     expect(current_path).to eq property_type_path(PropertyType.last)
@@ -25,7 +25,7 @@ describe 'Visitor register property type' do
     click_link 'Tipos de Imóveis'
     click_link 'Cadastrar'
     fill_in 'Nome', with: ''
-    click_button 'Cadastrar'
+    click_button 'Cadastrar Tipo de Imóvel'
 
     # Assert
     expect(current_path).to eq property_types_path
@@ -42,7 +42,7 @@ describe 'Visitor register property type' do
     click_link 'Tipos de Imóveis'
     click_link 'Cadastrar'
     fill_in 'Nome', with: name
-    click_button 'Cadastrar'
+    click_button 'Cadastrar Tipo de Imóvel'
 
     # Assert
     expect(current_path).to eq property_types_path

@@ -1,0 +1,21 @@
+<% if @property_location.errors.any? %>
+  <ul>
+    <% @property_location.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div>
+  <%= form_with model: @property_location do |f| %>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </p>
+    <p><%= f.submit %></p>
+  <% end %>
+</div>
+
+<div>
+  <p><%= link_to 'Voltar', property_locations_path %></p>
+</div>

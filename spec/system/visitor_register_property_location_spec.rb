@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 describe 'Visitor register property location' do
   it 'successfully' do
     # Arrange
@@ -9,7 +10,7 @@ describe 'Visitor register property location' do
     click_link 'Regiões de Imóveis'
     click_link 'Cadastrar'
     fill_in 'Nome', with: name
-    click_button 'Cadastrar'
+    click_button 'Cadastrar Região do Imóvel'
 
     # Assert
     expect(current_path).to eq property_location_path(PropertyLocation.last)
@@ -24,7 +25,7 @@ describe 'Visitor register property location' do
     click_link 'Regiões de Imóveis'
     click_link 'Cadastrar'
     fill_in 'Nome', with: ''
-    click_button 'Cadastrar'
+    click_button 'Cadastrar Região do Imóvel'
 
     # Assert
     expect(current_path).to eq property_locations_path
@@ -41,7 +42,7 @@ describe 'Visitor register property location' do
     click_link 'Regiões de Imóveis'
     click_link 'Cadastrar'
     fill_in 'Nome', with: name
-    click_button 'Cadastrar'
+    click_button 'Cadastrar Região do Imóvel'
 
     # Assert
     expect(current_path).to eq property_locations_path
