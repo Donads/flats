@@ -1,10 +1,12 @@
 require 'rails_helper'
 
-describe 'Visitor register property' do
+describe 'PropertyOwner register property' do
   it 'successfully' do
+    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     PropertyType.create!(name: 'Casa')
     PropertyLocation.create!(name: 'Sudeste')
 
+    login_as property_owner, scrope: :property_owner
     visit root_path
     click_link 'Cadastrar Imóvel'
     fill_in 'Título', with: 'Casa em Florianópolis'
@@ -30,9 +32,11 @@ describe 'Visitor register property' do
   end
 
   it 'and must fill all fields' do
+    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     PropertyType.create!(name: 'Casa')
     PropertyLocation.create!(name: 'Sudeste')
 
+    login_as property_owner, scrope: :property_owner
     visit root_path
     click_link 'Cadastrar Imóvel'
     # fill_in 'Título', with: ''
@@ -52,9 +56,11 @@ describe 'Visitor register property' do
   end
 
   it 'and fills it with invalid formats' do
+    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     PropertyType.create!(name: 'Casa')
     PropertyLocation.create!(name: 'Sudeste')
 
+    login_as property_owner, scrope: :property_owner
     visit root_path
     click_link 'Cadastrar Imóvel'
     fill_in 'Título', with: 'Casa em Florianópolis'

@@ -11,6 +11,9 @@ pt-BR:
       property_location:
         one: Região do Imóvel
         other: Regiões dos Imóveis
+      property_owner:
+        one: Proprietário
+        other: Proprietários
     attributes:
       property:
         bathrooms: Banheiros
@@ -24,3 +27,6 @@ pt-BR:
         name: Nome
       property_location:
         name: Nome
+      property_owner:
+        email: E-mail
+        password: Senha
