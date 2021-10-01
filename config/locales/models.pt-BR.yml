@@ -13,11 +13,13 @@ pt-BR:
         other: Regiões dos Imóveis
     attributes:
       property:
-        title: Título
-        description: Descrição
-        rooms: Quartos
         bathrooms: Banheiros
         daily_rate: Diária
+        description: Descrição
+        parking_slot: Vaga de Estacionamento
+        pets: Animais de Estimação
+        rooms: Quartos
+        title: Título
       property_type:
         name: Nome
       property_location:
