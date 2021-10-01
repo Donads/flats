@@ -2,22 +2,18 @@ require 'rails_helper'
 
 describe 'Visitor filter properties by type' do
   it 'should view links on nav bar' do
-    # Arrange
     PropertyType.create!(name: 'Apartamento')
     PropertyType.create!(name: 'Casa')
     PropertyType.create!(name: 'Sitio')
 
-    # Act
     visit root_path
 
-    # Assert
     expect(page).to have_link('Apartamento')
     expect(page).to have_link('Casa')
     expect(page).to have_link('Sitio')
   end
 
   it 'on the type page successfully' do
-    # Arrange
     apartamento = PropertyType.create!(name: 'Apartamento')
     casa = PropertyType.create!(name: 'Casa')
     property_location = PropertyLocation.create!(name: 'Sudeste')
@@ -31,12 +27,10 @@ describe 'Visitor filter properties by type' do
                                     rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500,
                                     property_type: casa, property_location: property_location })
 
-    # Act
     visit root_path
     click_link 'Tipos de Imóveis'
     click_link 'Casa'
 
-    # Assert
     expect(current_path).to eq property_type_path(property_2)
     expect(page).to have_css('h1', text: 'Imóveis do tipo Casa')
     expect(page).not_to have_content('Cobertura em Manaus')
@@ -44,7 +38,6 @@ describe 'Visitor filter properties by type' do
   end
 
   it 'on the homepage successfully' do
-    # Arrange
     apartamento = PropertyType.create!(name: 'Apartamento')
     casa = PropertyType.create!(name: 'Casa')
     property_location = PropertyLocation.create!(name: 'Sudeste')
@@ -58,11 +51,9 @@ describe 'Visitor filter properties by type' do
                        rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500,
                        property_type: casa, property_location: property_location })
 
-    # Act
     visit root_path
     click_link 'Casa'
 
-    # Assert
     expect(current_path).to eq root_path
     expect(page).not_to have_content('Cobertura em Manaus')
     expect(page).to have_link('Casa com quintal em Copacabana')

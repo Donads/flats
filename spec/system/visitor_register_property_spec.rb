@@ -2,11 +2,9 @@ require 'rails_helper'
 
 describe 'Visitor register property' do
   it 'successfully' do
-    # Arrange
     PropertyType.create!(name: 'Casa')
     PropertyLocation.create!(name: 'Sudeste')
 
-    # Act
     visit root_path
     click_link 'Cadastrar Imóvel'
     fill_in 'Título', with: 'Casa em Florianópolis'
@@ -20,7 +18,6 @@ describe 'Visitor register property' do
     check 'Vaga de Estacionamento'
     click_button 'Criar Imóvel'
 
-    # Assert
     expect(page).to have_content('Casa em Florianópolis')
     expect(page).to have_content('Ótima casa perto da USFC')
     expect(page).to have_content('Quartos: 3')
@@ -33,11 +30,9 @@ describe 'Visitor register property' do
   end
 
   it 'and must fill all fields' do
-    # Arrange
     PropertyType.create!(name: 'Casa')
     PropertyLocation.create!(name: 'Sudeste')
 
-    # Act
     visit root_path
     click_link 'Cadastrar Imóvel'
     # fill_in 'Título', with: ''
@@ -49,7 +44,6 @@ describe 'Visitor register property' do
     select 'Sudeste', from: 'Região do Imóvel'
     click_button 'Criar Imóvel'
 
-    # Assert
     expect(page).to have_content('Título não pode ficar em branco')
     expect(page).to have_content('Descrição não pode ficar em branco')
     expect(page).to have_content('Quartos não pode ficar em branco')
@@ -58,11 +52,9 @@ describe 'Visitor register property' do
   end
 
   it 'and fills it with invalid formats' do
-    # Arrange
     PropertyType.create!(name: 'Casa')
     PropertyLocation.create!(name: 'Sudeste')
 
-    # Act
     visit root_path
     click_link 'Cadastrar Imóvel'
     fill_in 'Título', with: 'Casa em Florianópolis'
@@ -74,7 +66,6 @@ describe 'Visitor register property' do
     select 'Sudeste', from: 'Região do Imóvel'
     click_button 'Criar Imóvel'
 
-    # Assert
     expect(page).to have_content('Quartos não é um número')
     expect(page).to have_content('Banheiros não é um número inteiro')
     expect(page).to have_content('Diária não é um número')
