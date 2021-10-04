@@ -18,6 +18,7 @@ describe 'Visitor filter properties by location' do
   end
 
   it 'on the location page successfully' do
+    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     property_type = PropertyType.create!(name: 'Apartamento')
     norte = PropertyLocation.create!(name: 'Norte')
     sudeste = PropertyLocation.create!(name: 'Sudeste')
@@ -25,11 +26,11 @@ describe 'Visitor filter properties by location' do
     property_1 = Property.create!({ title: 'Cobertura em Manaus',
                                     description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
                                     rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500,
-                                    property_type: property_type, property_location: norte })
+                                    property_type: property_type, property_location: norte, property_owner: property_owner })
     property_2 = Property.create!({ title: 'Cobertura em Copacabana',
                                     description: 'Excelente casa, recém reformada com 2 vagas de garagem',
                                     rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500,
-                                    property_type: property_type, property_location: sudeste })
+                                    property_type: property_type, property_location: sudeste, property_owner: property_owner })
 
     visit root_path
     click_link 'Regiões de Imóveis'
@@ -42,6 +43,7 @@ describe 'Visitor filter properties by location' do
   end
 
   it 'on the homepage successfully' do
+    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     property_type = PropertyType.create!(name: 'Apartamento')
     norte = PropertyLocation.create!(name: 'Norte')
     sudeste = PropertyLocation.create!(name: 'Sudeste')
@@ -49,11 +51,11 @@ describe 'Visitor filter properties by location' do
     property_1 = Property.create!({ title: 'Cobertura em Manaus',
                                     description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
                                     rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500,
-                                    property_type: property_type, property_location: norte })
+                                    property_type: property_type, property_location: norte, property_owner: property_owner })
     property_2 = Property.create!({ title: 'Cobertura em Copacabana',
                                     description: 'Excelente casa, recém reformada com 2 vagas de garagem',
                                     rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500,
-                                    property_type: property_type, property_location: sudeste })
+                                    property_type: property_type, property_location: sudeste, property_owner: property_owner })
 
     visit root_path
     click_link 'Sudeste'

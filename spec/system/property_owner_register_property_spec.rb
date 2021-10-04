@@ -29,6 +29,7 @@ describe 'PropertyOwner register property' do
     expect(page).to have_content('Diária: R$ 200,00')
     expect(page).to have_content('Casa')
     expect(page).to have_content('Sudeste')
+    expect(page).to have_content('Proprietário: jane@doe.com.br')
   end
 
   it 'and must fill all fields' do

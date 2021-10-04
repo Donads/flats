@@ -1,0 +1,14 @@
+<section>
+  <h2>Lista de Imóveis:</h2>
+  <% if @properties.empty? %>
+    <div><span>Você ainda não cadastrou nenhum imóvel</span></div>
+  <% end %>
+
+  <% @properties.each do |property| %>
+    <dl>
+      <dt><%= link_to property.title, property_path(property) %></dt>
+      <dd><%= property.description %></dd>
+      <dd>Quartos: <%= property.rooms %></dd>
+    </dl>
+  <% end %>
+</section>

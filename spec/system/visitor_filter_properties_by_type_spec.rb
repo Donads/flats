@@ -14,6 +14,7 @@ describe 'Visitor filter properties by type' do
   end
 
   it 'on the type page successfully' do
+    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     apartamento = PropertyType.create!(name: 'Apartamento')
     casa = PropertyType.create!(name: 'Casa')
     property_location = PropertyLocation.create!(name: 'Sudeste')
@@ -21,11 +22,11 @@ describe 'Visitor filter properties by type' do
     property_1 = Property.create!({ title: 'Cobertura em Manaus',
                                     description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
                                     rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500,
-                                    property_type: apartamento, property_location: property_location })
+                                    property_type: apartamento, property_location: property_location, property_owner: property_owner })
     property_2 = Property.create!({ title: 'Casa com quintal em Copacabana',
                                     description: 'Excelente casa, recém reformada com 2 vagas de garagem',
                                     rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500,
-                                    property_type: casa, property_location: property_location })
+                                    property_type: casa, property_location: property_location, property_owner: property_owner })
 
     visit root_path
     click_link 'Tipos de Imóveis'
@@ -38,6 +39,7 @@ describe 'Visitor filter properties by type' do
   end
 
   it 'on the homepage successfully' do
+    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     apartamento = PropertyType.create!(name: 'Apartamento')
     casa = PropertyType.create!(name: 'Casa')
     property_location = PropertyLocation.create!(name: 'Sudeste')
@@ -45,11 +47,11 @@ describe 'Visitor filter properties by type' do
     Property.create!({ title: 'Cobertura em Manaus',
                        description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
                        rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500,
-                       property_type: apartamento, property_location: property_location })
+                       property_type: apartamento, property_location: property_location, property_owner: property_owner })
     Property.create!({ title: 'Casa com quintal em Copacabana',
                        description: 'Excelente casa, recém reformada com 2 vagas de garagem',
                        rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500,
-                       property_type: casa, property_location: property_location })
+                       property_type: casa, property_location: property_location, property_owner: property_owner })
 
     visit root_path
     click_link 'Casa'

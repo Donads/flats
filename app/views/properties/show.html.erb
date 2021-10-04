@@ -16,16 +16,19 @@
   <p><dt><%= Property.human_attribute_name(:parking_slot) %>:</dt>
   <dd><%= @property.parking_slot ? 'Sim' : 'Não' %></dd></p>
 
+  <p><dt><%= Property.human_attribute_name(:daily_rate) %>:</dt>
+  <dd><%= number_to_currency(@property.daily_rate) %></dd></p>
+
   <p><dt><%= PropertyType.model_name.human %>:</dt>
   <dd><%= @property.property_type.name %></dd></p>
 
   <p><dt><%= PropertyLocation.model_name.human %>:</dt>
   <dd><%= @property.property_location.name %></dd></p>
 
-  <p><dt><%= Property.human_attribute_name(:daily_rate) %>:</dt>
-  <dd><%= number_to_currency(@property.daily_rate) %></dd></p>
+  <p><dt><%= PropertyOwner.model_name.human %>:</dt>
+  <dd><%= @property.property_owner.email %></dd></p>
 </dl>
 </div>
 
-<p><%= link_to 'Editar Imóvel', edit_property_path(@property) %></p>
+<p><%= link_to('Editar Imóvel', edit_property_path(@property)) if property_owner_signed_in? %></p>
 <p><%= link_to t('links.go_back'), root_path %></p>

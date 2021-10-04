@@ -2,14 +2,14 @@ require 'rails_helper'
 
 describe 'PropertyOwner edits property' do
   it 'successfully' do
+    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     property_type = PropertyType.create!(name: 'Apartamento')
     norte = PropertyLocation.create!(name: 'Norte')
     PropertyLocation.create!(name: 'Sudeste')
     property = Property.create!({ title: 'Cobertura em Manaus',
                                   description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
                                   rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500,
-                                  property_type: property_type, property_location: norte })
-    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
+                                  property_type: property_type, property_location: norte, property_owner: property_owner })
 
     login_as property_owner, scope: :property_owner
     visit root_path
@@ -34,13 +34,13 @@ describe 'PropertyOwner edits property' do
   end
 
   it 'and must fill all fields' do
+    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     property_type = PropertyType.create!(name: 'Apartamento')
     norte = PropertyLocation.create!(name: 'Norte')
     property = Property.create!({ title: 'Cobertura em Manaus',
                                   description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
                                   rooms: 5, parking_slot: false, bathrooms: 4, pets: true, daily_rate: 1500,
-                                  property_type: property_type, property_location: norte })
-    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
+                                  property_type: property_type, property_location: norte, property_owner: property_owner })
 
     login_as property_owner, scope: :property_owner
     visit root_path
