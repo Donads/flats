@@ -12,5 +12,6 @@ pt-BR:
     forgot_your_password?: Esqueceu sua senha?
     unlock_instructions: Não recebeu as instruções de desbloqueio?
   buttons:
+    go_back: Voltar
     login: Entrar
-    signup: 'Registrar'
+    signup: Registrar

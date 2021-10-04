@@ -8,7 +8,7 @@ class PropertyTypesController < ApplicationController
   end
 
   def create
-    @property_type = PropertyType.new(params.require(:property_type).permit(:name))
+    @property_type = PropertyType.new(property_params)
 
     if @property_type.save
       redirect_to @property_type
@@ -18,11 +18,26 @@ class PropertyTypesController < ApplicationController
   end
 
   def show
-    id = params[:id]
-    @property_type = PropertyType.find(id)
+    @property_type = PropertyType.find(params[:id])
   end
 
   def edit
     @property_type = PropertyType.find(params[:id])
+  end
+
+  def update
+    @property_type = PropertyType.find(params[:id])
+
+    if @property_type.update(property_params)
+      redirect_to @property_type
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def property_params
+    params.require(:property_type).permit(:name)
   end
 end

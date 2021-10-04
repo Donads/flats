@@ -16,7 +16,7 @@ describe 'PropertyOwner register property' do
     fill_in 'Diária', with: 200
     select 'Casa', from: 'Tipo de Imóvel'
     select 'Sudeste', from: 'Região do Imóvel'
-    check 'Aceita Pets'
+    check 'Animais de Estimação'
     check 'Vaga de Estacionamento'
     click_button 'Criar Imóvel'
 
@@ -24,8 +24,8 @@ describe 'PropertyOwner register property' do
     expect(page).to have_content('Ótima casa perto da USFC')
     expect(page).to have_content('Quartos: 3')
     expect(page).to have_content('Banheiros: 2')
-    expect(page).to have_content('Aceita Pets: Sim')
-    expect(page).to have_content('Estacionamento: Sim')
+    expect(page).to have_content('Animais de Estimação: Sim')
+    expect(page).to have_content('Vaga de Estacionamento: Sim')
     expect(page).to have_content('Diária: R$ 200,00')
     expect(page).to have_content('Casa')
     expect(page).to have_content('Sudeste')

@@ -4,27 +4,28 @@
 <h4><%= @property.description %></h4>
 
 <dl>
-  <p><dt>Quartos:</dt>
+  <p><dt><%= Property.human_attribute_name(:rooms) %>:</dt>
   <dd><%= @property.rooms %></dd></p>
 
-  <p><dt>Banheiros:</dt>
+  <p><dt><%= Property.human_attribute_name(:bathrooms) %>:</dt>
   <dd><%= @property.bathrooms %></dd></p>
 
-  <p><dt>Aceita Pets:</dt>
+  <p><dt><%= Property.human_attribute_name(:pets) %>:</dt>
   <dd><%= @property.pets ? 'Sim' : 'Não' %></dd></p>
 
-  <p><dt>Estacionamento:</dt>
+  <p><dt><%= Property.human_attribute_name(:parking_slot) %>:</dt>
   <dd><%= @property.parking_slot ? 'Sim' : 'Não' %></dd></p>
 
-  <p><dt>Tipo de Imóvel:</dt>
+  <p><dt><%= PropertyType.model_name.human %>:</dt>
   <dd><%= @property.property_type.name %></dd></p>
 
-  <p><dt>Região do Imóvel:</dt>
+  <p><dt><%= PropertyLocation.model_name.human %>:</dt>
   <dd><%= @property.property_location.name %></dd></p>
 
-  <p><dt>Diária:</dt>
+  <p><dt><%= Property.human_attribute_name(:daily_rate) %>:</dt>
   <dd><%= number_to_currency(@property.daily_rate) %></dd></p>
 </dl>
 </div>
 
-<%= link_to 'Voltar', root_path %>
+<p><%= link_to 'Editar Imóvel', edit_property_path(@property) %></p>
+<p><%= link_to t('links.go_back'), root_path %></p>

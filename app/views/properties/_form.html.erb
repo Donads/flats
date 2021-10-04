@@ -8,43 +8,43 @@
 
 <%= form_with model: @property do |f| %>
   <div>
-    <%= f.label :title, 'Título do Anúncio:' %>
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
   <div>
-    <%= f.label :description, 'Descrição do Anúncio' %>
+    <%= f.label :description %>
     <%= f.text_field :description %>
   </div>
   <div>
-    <%= f.label :rooms, 'Quartos' %>
+    <%= f.label :rooms %>
     <%= f.number_field :rooms %>
   </div>
   <div>
-    <%= f.label :bathrooms, 'Banheiros' %>
+    <%= f.label :bathrooms %>
     <%= f.number_field :bathrooms %>
   </div>
   <div>
-    <%= f.label :daily_rate, 'Diária' %>
+    <%= f.label :daily_rate %>
     <%= f.number_field :daily_rate %>
   </div>
   <div>
-    <%= f.label :property_type_id, 'Tipo de Imóvel' %>
+    <%= f.label :property_type_id, PropertyType.model_name.human %>
     <%= f.collection_select :property_type_id, PropertyType.order(:name), :id, :name %>
   </div>
   <div>
-    <%= f.label :property_location_id, 'Região do Imóvel' %>
+    <%= f.label :property_location_id, PropertyLocation.model_name.human %>
     <%= f.collection_select :property_location_id, PropertyLocation.order(:name), :id, :name %>
   </div>
   <div>
     <%= f.check_box :pets %>
-    <%= f.label :pets, 'Aceita Pets' %>
+    <%= f.label :pets %>
   </div>
   <div>
     <%= f.check_box :parking_slot %>
-    <%= f.label :parking_slot, 'Vaga de Estacionamento' %>
+    <%= f.label :parking_slot %>
   </div>
   <%= f.submit %>
 <% end %>
 <div>
-  <%= link_to 'Voltar', root_path %>
+  <%= link_to t('links.go_back'), root_path %>
 </div>
