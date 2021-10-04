@@ -6,7 +6,7 @@ describe 'PropertyOwner register property' do
     PropertyType.create!(name: 'Casa')
     PropertyLocation.create!(name: 'Sudeste')
 
-    login_as property_owner, scrope: :property_owner
+    login_as property_owner, scope: :property_owner
     visit root_path
     click_link 'Cadastrar Imóvel'
     fill_in 'Título', with: 'Casa em Florianópolis'
@@ -36,7 +36,7 @@ describe 'PropertyOwner register property' do
     PropertyType.create!(name: 'Casa')
     PropertyLocation.create!(name: 'Sudeste')
 
-    login_as property_owner, scrope: :property_owner
+    login_as property_owner, scope: :property_owner
     visit root_path
     click_link 'Cadastrar Imóvel'
     # fill_in 'Título', with: ''
@@ -60,7 +60,7 @@ describe 'PropertyOwner register property' do
     PropertyType.create!(name: 'Casa')
     PropertyLocation.create!(name: 'Sudeste')
 
-    login_as property_owner, scrope: :property_owner
+    login_as property_owner, scope: :property_owner
     visit root_path
     click_link 'Cadastrar Imóvel'
     fill_in 'Título', with: 'Casa em Florianópolis'
@@ -75,5 +75,11 @@ describe 'PropertyOwner register property' do
     expect(page).to have_content('Quartos não é um número')
     expect(page).to have_content('Banheiros não é um número inteiro')
     expect(page).to have_content('Diária não é um número')
+  end
+
+  it 'cant be accessed via route' do
+    visit new_property_path
+
+    expect(current_path).to eq(new_property_owner_session_path)
   end
 end

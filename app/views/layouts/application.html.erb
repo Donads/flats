@@ -12,12 +12,17 @@
 
   <body>
     <nav>
-      <% if property_owner_signed_in? %>
+      <% case %>
+      <% when property_owner_signed_in? %>
         <p><%= link_to 'Cadastrar Imóvel', new_property_path %></p>
-        <p><%= current_property_owner&.email %></p>
+        <p><%= current_property_owner&.email %> (Logado como <%= t(PropertyOwner.model_name.human) %>)</p>
         <p><%= link_to 'Sair', destroy_property_owner_session_path, method: :delete %></p>
+      <% when user_signed_in? %>
+        <p><%= current_user&.email %> (Logado como <%= t(User.model_name.human) %>)</p>
+        <p><%= link_to 'Sair', destroy_user_session_path, method: :delete %></p>
       <% else %>
-        <p><%= link_to 'Entrar', new_property_owner_session_path %></p>
+        <p><%= link_to 'Entrar como Proprietário', new_property_owner_session_path %></p>
+        <p><%= link_to 'Entrar como Usuário', new_user_session_path %></p>
       <% end %>
     </nav>
     <p class="notice"><%= notice %></p>

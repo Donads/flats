@@ -14,6 +14,9 @@ pt-BR:
       property_owner:
         one: Proprietário
         other: Proprietários
+      user:
+        one: Usuário
+        other: Usuários
     attributes:
       property:
         bathrooms: Banheiros
@@ -30,3 +33,10 @@ pt-BR:
       property_owner:
         email: E-mail
         password: Senha
+        password_confirmation: Confirmação de Senha
+        remember_me: Manter logado
+      user:
+        email: E-mail
+        password: Senha
+        password_confirmation: Confirmação de Senha
+        remember_me: Manter logado
