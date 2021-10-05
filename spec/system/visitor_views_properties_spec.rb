@@ -32,7 +32,7 @@ describe 'Visitor visits homepage' do
     expect(page).to have_content('Nenhum imóvel disponível')
   end
 
-  it 'and view property details' do
+  it 'and views property details' do
     property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     property_type = PropertyType.create!(name: 'Casa')
     property_location = PropertyLocation.create!(name: 'Sudeste')
@@ -61,7 +61,7 @@ describe 'Visitor visits homepage' do
     expect(page).to have_content('Sudeste')
   end
 
-  it 'and view property details and return to home page' do
+  it 'and views property details then returns to home page' do
     property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     property_type = PropertyType.create!(name: 'Casa')
     property_location = PropertyLocation.create!(name: 'Sudeste')

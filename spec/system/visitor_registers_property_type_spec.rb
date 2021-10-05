@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Visitor register property type' do
+describe 'Visitor registers property type' do
   it 'successfully' do
     name = 'Nome para teste de cadastro'
 

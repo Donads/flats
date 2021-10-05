@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'PropertyOwner register property' do
+describe 'PropertyOwner registers property' do
   it 'successfully' do
     property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     PropertyType.create!(name: 'Casa')

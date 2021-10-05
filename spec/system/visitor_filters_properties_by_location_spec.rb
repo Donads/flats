@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Visitor filter properties by location' do
+describe 'Visitor filters properties by location' do
   it 'should view links on nav bar' do
     PropertyLocation.create!(name: 'Centro-Oeste')
     PropertyLocation.create!(name: 'Nordeste')
@@ -38,8 +38,8 @@ describe 'Visitor filter properties by location' do
 
     expect(current_path).to eq property_location_path(property_2)
     expect(page).to have_css('h1', text: 'Imóveis da região Sudeste')
+    expect(page).to have_link('Cobertura em Copacabana', href: property_path(property_2))
     expect(page).not_to have_content('Cobertura em Manaus')
-    expect(page).to have_link('Cobertura em Copacabana')
   end
 
   it 'on the homepage successfully' do
@@ -61,7 +61,7 @@ describe 'Visitor filter properties by location' do
     click_link 'Sudeste'
 
     expect(current_path).to eq root_path
+    expect(page).to have_link('Cobertura em Copacabana', href: property_path(property_2))
     expect(page).not_to have_content('Cobertura em Manaus')
-    expect(page).to have_link('Cobertura em Copacabana')
   end
 end

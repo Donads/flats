@@ -17,8 +17,8 @@ describe 'Visitor signs up' do
     expect(page).to have_content('Login efetuado com sucesso.')
     expect(page).to have_content("Logado como #{PropertyOwner.model_name.human}")
     expect(page).to have_content(property_owner[:email])
-    expect(page).to have_link('Cadastrar Imóvel')
-    expect(page).to have_link('Sair')
+    expect(page).to have_link('Cadastrar Imóvel', href: new_property_path)
+    expect(page).to have_link('Sair', href: destroy_property_owner_session_path)
     expect(page).not_to have_link('Entrar')
   end
 
@@ -38,7 +38,7 @@ describe 'Visitor signs up' do
     expect(page).to have_content('Login efetuado com sucesso.')
     expect(page).to have_content("Logado como #{User.model_name.human}")
     expect(page).to have_content(user[:email])
-    expect(page).to have_link('Sair')
+    expect(page).to have_link('Sair', href: destroy_user_session_path)
     expect(page).not_to have_link('Cadastrar Imóvel')
     expect(page).not_to have_link('Entrar')
   end
