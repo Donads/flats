@@ -41,5 +41,6 @@ describe 'PropertyOwner views own properties' do
     click_link 'Meus Imóveis'
 
     expect(page).to have_content('Você ainda não cadastrou nenhum imóvel')
+    expect(page).to have_link('Cadastre seu primeiro imóvel agora', href: new_property_path)
   end
 end

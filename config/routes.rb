@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
   devise_for :property_owners
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
   root to: 'home#index'
+
+  get 'my_profile', to: 'users#my_profile'
+
   resources :properties, only: %i[create edit new show update] do
     get 'my_properties', on: :collection
+    resources :property_reservations, only: %i[create show], shallow: true do
+      post 'accept', on: :member
+    end
   end
-  resources :property_types, only: %i[create edit index new show update]
+
   resources :property_locations, only: %i[create edit index new show update]
+
+  resources :property_types, only: %i[create edit index new show update]
 end

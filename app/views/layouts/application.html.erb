@@ -11,25 +11,27 @@
   </head>
 
   <body>
-    <nav>
-      <ul>
-        <% case %>
-        <% when property_owner_signed_in? %>
-          <li><%= link_to 'Cadastrar Imóvel', new_property_path %></li>
-          <li><%= link_to 'Meus Imóveis', my_properties_properties_path %></li>
-          <li><%= current_property_owner&.email %> (Logado como <%= t(PropertyOwner.model_name.human) %>)</li>
-          <li><%= link_to 'Sair', destroy_property_owner_session_path, method: :delete %></li>
-        <% when user_signed_in? %>
-          <li><%= current_user&.email %> (Logado como <%= t(User.model_name.human) %>)</li>
-          <li><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to 'Entrar como Proprietário', new_property_owner_session_path %></li>
-          <li><%= link_to 'Entrar como Usuário', new_user_session_path %></li>
-        <% end %>
-      </ul>
-    </nav>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="container">
+      <nav>
+        <ul>
+          <% case %>
+          <% when property_owner_signed_in? %>
+            <li><%= link_to 'Cadastrar Imóvel', new_property_path %></li>
+            <li><%= link_to 'Meus Imóveis', my_properties_properties_path %></li>
+            <li><%= current_property_owner&.email %> (Logado como <%= t(PropertyOwner.model_name.human) %>)</li>
+            <li><%= link_to 'Sair', destroy_property_owner_session_path, method: :delete %></li>
+          <% when user_signed_in? %>
+            <li><%= link_to current_user&.email, my_profile_path %> (Logado como <%= t(User.model_name.human) %>)</li>
+            <li><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Entrar como Proprietário', new_property_owner_session_path %></li>
+            <li><%= link_to 'Entrar como Usuário', new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>

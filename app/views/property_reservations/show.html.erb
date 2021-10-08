@@ -1,0 +1,14 @@
+<h3>Reserva do Imóvel <%= @property_reservation.property.title %></h3>
+
+<%= notice %>
+
+<dl>
+  <dt>Data de Início:</dt>
+  <dd><%= l @property_reservation.start_date %></dd>
+  <dt>Data de Término:</dt>
+  <dd><%= l @property_reservation.end_date %></dd>
+  <dt>Quantidade de pessoas:</dt>
+  <dd><%= @property_reservation.guests %></dd>
+  <dt>Valor Total:</dt>
+  <dd><%= number_to_currency(@property_reservation.total_value) %></dd>
+</dl>

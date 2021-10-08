@@ -2,6 +2,7 @@
   <h2>Lista de Imóveis:</h2>
   <% if @properties.empty? %>
     <div><span>Você ainda não cadastrou nenhum imóvel</span></div>
+    <p><%= link_to 'Cadastre seu primeiro imóvel agora', new_property_path %></p>
   <% end %>
 
   <% @properties.each do |property| %>

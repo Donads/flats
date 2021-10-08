@@ -2,6 +2,7 @@ class Property < ApplicationRecord
   belongs_to :property_type
   belongs_to :property_location
   belongs_to :property_owner
+  has_many :property_reservations, dependent: :restrict_with_error
 
   validates :title, :description, :rooms, :bathrooms, :daily_rate, presence: true
 

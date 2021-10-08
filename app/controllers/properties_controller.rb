@@ -18,6 +18,12 @@ class PropertiesController < ApplicationController
 
   def show
     @property = Property.find(params[:id])
+    if property_owner_signed_in?
+      @property_reservations = @property.property_reservations
+      # byebug
+    elsif user_signed_in?
+      @property_reservation = PropertyReservation.new
+    end
   end
 
   def edit

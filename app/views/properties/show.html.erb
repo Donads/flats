@@ -30,5 +30,37 @@
 </dl>
 </div>
 
+<% if property_owner_signed_in? && @property.property_owner == current_property_owner %>
+  <h3>Propostas de reserva:</h3>
+  <% @property_reservations.each do |pr| %>
+  <div>
+  <h4>Reserva de <%= pr.user.email %></h4>
+  <dl>
+    <dt>Data de Início:</dt>
+      <dd><%= l(pr.start_date) %></dd>
+    <dt>Data de Término:</dt>
+      <dd><%= l(pr.end_date) %></dt>
+    <dt>Total de Pessoas:</dt>
+      <dd><%= pr.guests %></dt>
+    <dt>Situação:</dt>
+      <dd><%= t(pr.status) %></dt>
+  </dl>
+  <%= link_to 'Aceitar Reserva', accept_property_reservation_path(pr.id), method: :post %>
+  </div>
+  <% end %>
+<% elsif user_signed_in? %>
+  <h3>Reserve agora:</h3>
+  <%#= form_with model: @property_reservation, url: property_property_reservations_path(@property) do |f| %>
+  <%= form_with model: [@property, @property_reservation] do |f| %>
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date %>
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date %>
+    <%= f.label :guests %>
+    <%= f.number_field :guests, step: 1 %>
+    <%= f.submit 'Enviar Reserva' %>
+  <% end %>
+<% end %>
+
 <p><%= link_to('Editar Imóvel', edit_property_path(@property)) if property_owner_signed_in? %></p>
 <p><%= link_to t('links.go_back'), root_path %></p>

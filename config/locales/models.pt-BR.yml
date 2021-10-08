@@ -11,6 +11,9 @@ pt-BR:
       property_location:
         one: Região do Imóvel
         other: Regiões dos Imóveis
+      property_reservation:
+        one: Reserva
+        other: Reservas
       property_owner:
         one: Proprietário
         other: Proprietários
@@ -30,6 +33,12 @@ pt-BR:
         name: Nome
       property_location:
         name: Nome
+      property_reservation:
+        start_date: Data de Início
+        end_date: Data Final
+        guests: Quantidade de Pessoas
+        total_value: Preço Total
+        status: Situação
       property_owner:
         email: E-mail
         password: Senha
@@ -40,3 +49,9 @@ pt-BR:
         password: Senha
         password_confirmation: Confirmação de Senha
         remember_me: Manter logado
+  errors:
+    messages:
+      end_date_greater_than_start_date: deve ser maior que data inicial
+  pending: Pendente
+  accepted: Aceita
+  rejected: Rejeitada
