@@ -16,4 +16,10 @@ Rails.application.routes.draw do
   resources :property_locations, only: %i[create edit index new show update]
 
   resources :property_types, only: %i[create edit index new show update]
+
+  namespace :api do
+    namespace :v1 do
+      resources :properties, only: %i[index show]
+    end
+  end
 end

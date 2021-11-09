@@ -4,6 +4,8 @@ class PropertyReservationsController < ApplicationController
     @property_reservation.property = Property.find(params[:property_id])
 
     @property_reservation.save
+    PropertyReservationMailer.with(reservation: @property_reservation).notify_new_reservation.deliver_now
+
     redirect_to @property_reservation, notice: 'Pedido de reserva enviado com sucesso!'
   end
 
@@ -14,6 +16,7 @@ class PropertyReservationsController < ApplicationController
   def accept
     @property_reservation = PropertyReservation.find(params[:id])
     @property_reservation.accepted!
+
     redirect_to @property_reservation.property
   end
 

@@ -12,6 +12,11 @@ describe 'User books property' do
                                   property_type: property_type, property_location: property_location, property_owner: property_owner })
     current_date = Date.today
     future_date = 3.days.from_now
+    mailer_spy = class_spy(PropertyReservationMailer)
+    stub_const('PropertyReservationMailer', mailer_spy)
+    mail = double('PropertyReservationMailer')
+    allow(PropertyReservationMailer).to receive(:notify_new_reservation).and_return(mail)
+    allow(mail).to receive(:deliver_now)
 
     login_as user, scope: :user
     visit root_path
@@ -21,6 +26,7 @@ describe 'User books property' do
     fill_in 'Quantidade de Pessoas', with: 3
     click_on 'Enviar Reserva'
 
+    expect(PropertyReservationMailer).to have_received(:notify_new_reservation)
     expect(page).to have_content('Pedido de reserva enviado com sucesso!')
     expect(page).to have_content("Data de Início: #{I18n.l(current_date)}")
     expect(page).to have_content("Data de Término: #{I18n.l(future_date.to_date)}")

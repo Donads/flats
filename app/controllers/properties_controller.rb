@@ -20,7 +20,6 @@ class PropertiesController < ApplicationController
     @property = Property.find(params[:id])
     if property_owner_signed_in?
       @property_reservations = @property.property_reservations
-      # byebug
     elsif user_signed_in?
       @property_reservation = PropertyReservation.new
     end
@@ -41,7 +40,6 @@ class PropertiesController < ApplicationController
   end
 
   def my_properties
-    # @properties = Property.joins(:property_owner).where(property_owner: current_property_owner)
     @properties = current_property_owner.properties
   end
 

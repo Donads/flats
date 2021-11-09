@@ -1,6 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe PropertyReservation, type: :model do
+  describe 'code must be uniq' do
+    it {
+      reservation = create(:property_reservation)
+      allow(SecureRandom).to receive(:alphanumeric).and_return(reservation.code, 'ABCD1234')
+      other_reservation = create(:property_reservation)
+
+      expect(other_reservation).to be_valid
+      expect(other_reservation.code).to eq('ABCD1234')
+    }
+
+    it {
+      reservation = create(:property_reservation)
+      other_reservation = build(:property_reservation, code: reservation.code)
+      other_reservation.save
+
+      expect(other_reservation).to be_invalid
+    }
+  end
+
   context '#valid?' do
     context 'should not be valid' do
       it 'start date greather than end date' do
