@@ -35,5 +35,50 @@ describe 'Property API' do
       expect(parsed_body[:daily_rate]).to eq '200.0'
       expect(parsed_body[:pets]).to eq true
     end
+
+    it 'returns status 404 if property does not exist' do
+      allow(Property).to receive(:find).and_raise(ActiveRecord::RecordNotFound)
+
+      get '/api/v1/properties/1'
+
+      expect(response).to have_http_status 404
+      expect(parsed_body[:error]).to eq 'Objeto não encontrado'
+    end
+
+    it 'returns status 500 if database is not available' do
+      allow(Property).to receive(:find).and_raise(ActiveRecord::ActiveRecordError)
+
+      get '/api/v1/properties/1'
+
+      expect(response).to have_http_status 500
+      expect(parsed_body[:error]).to eq 'Erro interno'
+    end
+  end
+
+  context 'POST /api/v1/properties' do
+    it 'create new property' do
+      property_location = create(:property_location, name: 'Sudeste')
+      property_type = create(:property_type, name: 'Apartamento')
+      property_owner = create(:property_owner, email: 'proprietario@teste.com.br')
+
+      params = { property: { title: 'Apartamento Legal', description: 'Apartamento com vista pra praia', rooms: 4,
+                             bathrooms: 5, daily_rate: 200, pets: true, parking_slot: true,
+                             property_location_id: property_location.id, property_type_id: property_type.id,
+                             property_owner_id: property_owner.id } }
+
+      post '/api/v1/properties', params: params
+
+      expect(response).to have_http_status 201
+      expect(response.content_type).to include('application/json')
+      expect(parsed_body[:id]).to eq Property.last.id
+      expect(parsed_body[:title]).to eq 'Apartamento Legal'
+      expect(parsed_body[:description]).to eq 'Apartamento com vista pra praia'
+      expect(parsed_body[:bathrooms]).to eq 5
+      expect(parsed_body[:daily_rate]).to eq '200.0'
+      expect(parsed_body[:pets]).to eq true
+      expect(parsed_body[:property_location][:name]).to eq 'Sudeste'
+      expect(parsed_body[:property_type][:name]).to eq 'Apartamento'
+      expect(parsed_body[:property_owner][:email]).to eq 'proprietario@teste.com.br'
+    end
   end
 end

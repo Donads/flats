@@ -9,7 +9,8 @@ RSpec.describe PropertyReservationMailer, type: :mailer do
       property = Property.create!({ title: 'Casa com quintal em Copacabana',
                                     description: 'Excelente casa, recém reformada com 2 vagas de garagem',
                                     rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 100,
-                                    property_type: property_type, property_location: property_location, property_owner: john })
+                                    property_type: property_type, property_location: property_location,
+                                    property_owner: john })
       reservation = create(:property_reservation, property: property)
 
       mail = PropertyReservationMailer.with(reservation: reservation).notify_new_reservation
@@ -17,7 +18,8 @@ RSpec.describe PropertyReservationMailer, type: :mailer do
       expect(mail.to).to eq [john.email]
       expect(mail.from).to eq ['contato@yandonadi.dev']
       expect(mail.subject).to eq "Nova reserva para seu imóvel #{property.title}"
-      expect(mail.body).to include "Olá #{john.email}, #{reservation.user.email} realizou uma reserva para o seu imóvel."
+      expect(mail.body)
+        .to include("Olá #{john.email}, #{reservation.user.email} realizou uma reserva para o seu imóvel.")
     end
   end
 end
